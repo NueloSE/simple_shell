@@ -36,6 +36,7 @@ int _strncmp(const char *str1, const char *str2, size_t n);
 char *_strcat(char *dest, const char *src);
 size_t _strcspn(const char *str, const char *target);
 
-
+/*****exit******/
+void myExit(const char *input);
 
 #endif /*MAIN_H*/
