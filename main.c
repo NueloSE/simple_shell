@@ -22,6 +22,9 @@ int main(void)
 		if (getline(&input, &len, stdin) == -1)
 			break;
 		input[_strcspn(input, "\n")] = '\0';
+
+		myExit(input);
+		
 		args = tokenize_input(input, &arg_count);
 		if (arg_count > 0)
 		{
