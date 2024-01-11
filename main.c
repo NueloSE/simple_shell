@@ -9,7 +9,7 @@ char **tokenize_input(char *input, size_t *arg_count);
  * Return: 0 on success. otherwise -1
 */
 
-int main(int ac, char **av)
+int main(int ac, char **av, char **env)
 {
 	char *input = NULL, **args;
 	size_t len = 0;
@@ -42,7 +42,7 @@ int main(int ac, char **av)
 				}
 				else if (pid == 0)
 				{
-					execve(args[0], args, NULL);
+					execve(args[0], args, env);
 					perror("execve");
 					exit(EXIT_FAILURE);
 				}
