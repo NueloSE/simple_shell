@@ -6,6 +6,7 @@ char **tokenize_input(char *input, size_t *arg_count);
  * main - entry point of the program
  * @ac: variadic argument count
  * @av: variadic list of command line argument
+ * @env: environment variable
  * Return: 0 on success. otherwise -1
 */
 
