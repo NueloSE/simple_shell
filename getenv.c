@@ -97,7 +97,7 @@ int path_finder(char **name)
 			dirs[i] = _realloc(dirs[i], _strlen(dirs[i]),
 			(_strlen(dirs[i]) + 2 + _strlen(*name) + 1));
 			dirs[i] = _strcat(dirs[i], "/");
-			*name = _strdup(strcat(dirs[i], *name));
+			*name = _strdup(_strcat(dirs[i], *name));
 			free(statbuff);
 			for (i = 0; dirs[i]; i++)
 				free(dirs[i]);

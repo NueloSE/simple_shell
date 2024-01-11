@@ -55,3 +55,22 @@ size_t _strcspn(const char *str, const char *target)
 	}
 	return (count);
 }
+
+/**
+ * strcmp - compares 2 string
+ * @str1: string 1
+ * @str2: string 2
+ * Return: the difference btw str1 and str2
+*/
+
+int _strcmp(const char *str1, const char *str2)
+{
+	if (str1 == NULL || str2 == NULL)
+		return (0);
+	while (*str1 != '\0' && *str2 != '\0' && *str1 == *str2)
+	{
+		str1++;
+		str2++;
+	}
+	return ((unsigned char)(*str1) - (unsigned char)(*str2));
+}

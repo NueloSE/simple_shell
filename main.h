@@ -35,6 +35,7 @@ int _strncmp(const char *str1, const char *str2, size_t n);
 /******strings_helper2.c*******/
 char *_strcat(char *dest, const char *src);
 size_t _strcspn(const char *str, const char *target);
+int _strcmp(const char *str1, const char *str2);
 
 /*****exit******/
 void myExit(const char *input);

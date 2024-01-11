@@ -1,14 +1,17 @@
 #include "main.h"
 
+/**
+ * myExit - ends the shell
+ * @input: the commandline input
+ * Return: void
+*/
+
 void myExit(const char *input)
 {
-    char *built_in = "exit";
-    char *newline = "\n";
+	char *built_in = "exit";
 
-    if (strcmp(input, built_in) == 0)
-    {
-        write(1, input, strlen(input));
-        write(1, newline, 1);
-        exit(EXIT_FAILURE);
-    }
+	if (_strcmp(input, built_in) == 0)
+	{
+		exit(EXIT_FAILURE);
+	}
 }

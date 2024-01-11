@@ -10,12 +10,10 @@ size_t _strlen(const char *str)
 {
 	size_t count;
 
-	if (str == NULL){
+	if (str == NULL)
 		return (0);
-	}
-	for (count = 0; str[count]; count++){
+	for (count = 0; str[count]; count++)
 		;
-	}
 	return (count);
 }
 
@@ -30,9 +28,8 @@ char *_strcpy(char *dest, const char *src)
 {
 	char *dest_start;
 
-	if (dest == NULL || src == NULL){
+	if (dest == NULL || src == NULL)
 		return (NULL);
-	}
 	dest_start = dest;
 	while (*src)
 	{
@@ -60,9 +57,8 @@ char *_strdup(const char *str)
 		length = _strlen(str);
 		copy = malloc((length + 1) * sizeof(char));
 
-		if (copy == NULL){
+		if (copy == NULL)
 			return (NULL);
-		}
 		_strcpy(copy, str);
 		return (copy);
 	}
@@ -80,12 +76,10 @@ char *_strchr(const char *str, int character)
 {
 	if (str != NULL)
 	{
-		while (*str != '\0' && *str != character){
+		while (*str != '\0' && *str != character)
 			str++;
-		}
-		if (*str == character){
+		if (*str == character)
 			return ((char *) str);
-		}
 	}
 	return (NULL);
 }
@@ -100,18 +94,16 @@ char *_strchr(const char *str, int character)
 
 int _strncmp(const char *str1, const char *str2, size_t n)
 {
-	if (str1 == NULL && str2 == NULL){
+	if (str1 == NULL && str2 == NULL)
 		return (0);
-	}
 	while (n != 0 && *str1 != '\0' && *str2 != '\0' && (*str1 == *str2))
 	{
 		str1++;
 		str2++;
 		n--;
 	}
-	if (n == 0 || (*str1 == '\0' && *str2 == '\0')){
+	if (n == 0 || (*str1 == '\0' && *str2 == '\0'))
 		return (0);
-	}
 	return ((unsigned char)(*str1) - (unsigned char)(*str2));
 
 }
