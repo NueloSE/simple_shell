@@ -4,10 +4,12 @@ char **tokenize_input(char *input, size_t *arg_count);
 
 /**
  * main - entry point of the program
+ * @ac: variadic argument count
+ * @av: variadic list of command line argument
  * Return: 0 on success. otherwise -1
 */
 
-int main(void)
+int main(int ac, char **av)
 {
 	char *input = NULL, **args;
 	size_t len = 0;
@@ -15,6 +17,7 @@ int main(void)
 	int interactive_mode = isatty(STDIN_FILENO);
 	pid_t pid;
 
+	(void)ac, (void)av;
 	while (1)
 	{
 		if (interactive_mode)
@@ -24,7 +27,6 @@ int main(void)
 		input[_strcspn(input, "\n")] = '\0';
 
 		myExit(input);
-		
 		args = tokenize_input(input, &arg_count);
 		if (arg_count > 0)
 		{
@@ -47,6 +49,8 @@ int main(void)
 				else
 					wait(NULL);
 			}
+			else
+				perror(av[0]);
 		}
 	}
 	if (interactive_mode)
