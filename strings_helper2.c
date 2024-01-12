@@ -57,7 +57,7 @@ size_t _strcspn(const char *str, const char *target)
 }
 
 /**
- * strcmp - compares 2 string
+ * _strcmp - compares 2 string
  * @str1: string 1
  * @str2: string 2
  * Return: the difference btw str1 and str2

@@ -43,3 +43,20 @@ void *_realloc(void *ptr, size_t old_size, size_t new_size)
 
 	return (s);
 }
+
+/**
+ * free_array - frees an array of pointers
+ * @array: double pointer
+ * Return: always void
+*/
+
+void free_array(char **array)
+{
+	int i;
+
+	if (!array)
+		return;
+	for (i = 0; array[i] != NULL; i++)
+		free(array[i]);
+	free(array);
+}

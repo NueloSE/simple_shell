@@ -30,6 +30,7 @@ char *_strcpy(char *dest, const char *src)
 
 	if (dest == NULL || src == NULL)
 		return (NULL);
+
 	dest_start = dest;
 	while (*src)
 	{
@@ -96,6 +97,7 @@ int _strncmp(const char *str1, const char *str2, size_t n)
 {
 	if (str1 == NULL && str2 == NULL)
 		return (0);
+
 	while (n != 0 && *str1 != '\0' && *str2 != '\0' && (*str1 == *str2))
 	{
 		str1++;

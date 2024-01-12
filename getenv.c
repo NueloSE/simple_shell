@@ -3,26 +3,25 @@
 /**
  * _getenv - get the env variable specified at name
  * @name: the environmental variable
+ * @env_var: a list of environment variables
  * Return: pointer to the variable
 */
 
-char *_getenv(const char *name)
+char *_getenv(char **env_var, const char *name)
 {
-	char **env, *sign;
+	char *sign;
 
-	if (name == NULL || name[0] == '\0' || environ == NULL)
-	{
+	if (name == NULL || name[0] == '\0')
 		return (NULL);
-	}
-	for (env = environ; *env != NULL; env++)
+	for (; *env_var != NULL; env_var++)
 	{
-		sign = _strchr(*env, '=');
+		sign = _strchr(*env_var, '=');
 
 		if ((sign != NULL) &&
-		((size_t)(sign - *env) == _strlen(name)) &&
-		(_strncmp(*env, name, sign - *env) == 0))
+		((size_t)(sign - *env_var) == _strlen(name)) &&
+		(_strncmp(*env_var, name, sign - *env_var) == 0))
 		{
-		return (sign + 1);
+			return (sign + 1);
 		}
 	}
 	return (NULL);
@@ -35,79 +34,66 @@ char *_getenv(const char *name)
  * Return: the number of times c occurs
 */
 
-int char_count(char *name, int c)
+size_t char_count(char *name, char c)
 {
-	int i = 0, count = 0;
+	size_t count = 0;
 
-	for (; name[i]; i++)
+	while (*name)
 	{
-		if (name[i] == c)
-		count++;
+		if (*name == c)
+			count++;
+		name++;
 	}
 	return (count);
 }
 
 /**
- * path_split - split a string into words
- * @name: string to split
- * Return: array of split words
+ * find_path - checks PATH if name(command) exits
+ * @name: address of name of command
+ * @path: an array of all the global variables
+ * Return: 0 on success. Otherwise -1
 */
 
-char **path_split(char *name)
+int find_path(char **name, char *path)
 {
-	char **dir = NULL;
-	char *token = NULL, *name_cpy = _strdup(name);
-	int idx = 0;
+	char *cwd = getcwd(NULL, 0);
+	char *token, *new_path;
+	struct stat stat_buf;
 
-	dir = malloc(sizeof(char *) * (char_count(name, ':') + 1));
-
-	token = strtok(name_cpy, ":");
-	while (token != NULL)
+	if (name == NULL || *name == NULL || path == NULL)
 	{
-		dir[idx] = _strdup(token);
-		token = strtok(NULL, ":");
-		idx++;
+		free(cwd);
+		return (-1);
 	}
-	dir[idx] = NULL;
-	return (dir);
-}
 
-/**
- * path_finder - finds a function complete path
- * @name: function to find complete path
- * Return: 0 on succes. Otherwise -1
-*/
-
-int path_finder(char **name)
-{
-	struct stat *statbuff = malloc(sizeof(struct stat));
-	char cwd[1024], **dirs;
-	int i;
-
-	dirs = path_split(_getenv("PATH"));
-	getcwd(cwd, sizeof(cwd));
-
-	if (*name[0] != '/')
+	if ((*name)[0] != '/' && (*name)[0] != '.')
 	{
-		for (i = 0; dirs[i]; i++)
+		char *path_copy = _strdup(path);
+
+		token = strtok(path_copy, ":");
+
+		while (token != NULL)
 		{
-		chdir(dirs[i]);
-		if (stat(*name, statbuff) == 0)
+		chdir(token);
+		if (stat(*name, &stat_buf) == 0)
 		{
-			dirs[i] = _realloc(dirs[i], _strlen(dirs[i]),
-			(_strlen(dirs[i]) + 2 + _strlen(*name) + 1));
-			dirs[i] = _strcat(dirs[i], "/");
-			*name = _strdup(_strcat(dirs[i], *name));
-			free(statbuff);
-			for (i = 0; dirs[i]; i++)
-				free(dirs[i]);
-			free(dirs);
+			new_path = malloc(_strlen(token) + 1 + _strlen(*name) + 1);
+			_strcpy(new_path, token);
+			_strcat(new_path, "/");
+			_strcat(new_path, *name);
+			free(*name);
+			*name = new_path;
 			chdir(cwd);
+			free(path_copy);
+			free(cwd);
 			return (0);
 		}
-		}
 		chdir(cwd);
+		token = strtok(NULL, ":");
+		}
+		free(path_copy);
 	}
-	free(statbuff);
-	return (0);
+
+	free(cwd);
+	return (1);
 }

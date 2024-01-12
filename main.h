@@ -15,15 +15,16 @@ extern char **environ;
 
 /****memory_handler2.c*****/
 void *_realloc(void *ptr, size_t old_size, size_t new_size);
+void free_array(char **array);
 
 /****getenv.c***/
-char *_getenv(const char *name);
-int char_count(char *name, int c);
-char **path_split(char *name);
-int path_finder(char **name);
+char *_getenv(char **variable, const char *name);
+size_t char_count(char *name, char c);
+int find_path(char **name, char *path);
 
-/******tokenize_input*****/
-char **tokenize_input(char *input, size_t *arg_count);
+/******tokenize.c*****/
+void tokenize_input(char ***, char *input, size_t *arg_count);
+int file_access(char *name);
 
 /*****strings_helper.c***/
 size_t _strlen(const char *str);
@@ -39,5 +40,8 @@ int _strcmp(const char *str1, const char *str2);
 
 /*****exit******/
 void myExit(const char *input);
+
+/*****executions.c*******/
+void execute_func(char **args, char **env);
 
 #endif /*MAIN_H*/
