@@ -29,3 +29,20 @@ void execute_func(char **args, char **env)
 		free_array(args);
 	}
 }
+
+/**
+ * isWhitespace - check if str is an empty string
+ * @str: the string
+ * Return: 0 if not empty. otherwise 1
+*/
+
+int isWhitespace(char *str)
+{
+	while (*str != '\0')
+	{
+		if (*str != ' ' && *str != '\n')
+			return (0);
+		str++;
+	}
+	return (1);
+}

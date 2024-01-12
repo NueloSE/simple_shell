@@ -43,5 +43,6 @@ void myExit(char *input);
 
 /*****executions.c*******/
 void execute_func(char **args, char **env);
+int isWhitespace(char *str);
 
 #endif /*MAIN_H*/

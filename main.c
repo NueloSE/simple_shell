@@ -19,6 +19,8 @@ int main(int ac __attribute__((unused)), char **av, char **env)
 			write(1, "$ ", 3);
 		if (getline(&input, &len, stdin) == -1)
 			break;
+		if (input[0] == '\n' || isWhitespace(input))
+			continue;
 		input[_strcspn(input, "\n")] = '\0';
 
 		myExit(input);

@@ -13,6 +13,6 @@ void myExit(char *input)
 	if (_strcmp(input, built_in) == 0)
 	{
 		free(input);
-		exit(EXIT_FAILURE);
+		exit(2);
 	}
 }
