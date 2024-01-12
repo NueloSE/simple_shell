@@ -20,6 +20,9 @@ int main(int ac __attribute__((unused)), char **av, char **env)
 		if (getline(&input, &len, stdin) == -1)
 			break;
 		input[_strcspn(input, "\n")] = '\0';
+
+		myExit(input);
+
 		tokenize_input(&args, input, &arg_count);
 		if (arg_count > 0)
 		{

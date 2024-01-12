@@ -39,7 +39,7 @@ size_t _strcspn(const char *str, const char *target);
 int _strcmp(const char *str1, const char *str2);
 
 /*****exit******/
-void myExit(const char *input);
+void myExit(char *input);
 
 /*****executions.c*******/
 void execute_func(char **args, char **env);

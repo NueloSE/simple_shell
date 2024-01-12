@@ -6,12 +6,13 @@
  * Return: void
 */
 
-void myExit(const char *input)
+void myExit(char *input)
 {
 	char *built_in = "exit";
 
 	if (_strcmp(input, built_in) == 0)
 	{
+		free(input);
 		exit(EXIT_FAILURE);
 	}
 }
