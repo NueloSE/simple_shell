@@ -2,6 +2,7 @@
 #define MAIN_H
 
 #define MAX_INPUT_SIZE 1024
+#define ENV_MAX_SIZE 100
 
 #include <stdio.h>
 #include <unistd.h>
@@ -41,8 +42,12 @@ int _strcmp(const char *str1, const char *str2);
 /*****exit******/
 void myExit(char *input);
 
-/*****executions.c*******/
+/*****executions.c*****/
 void execute_func(char **args, char **env);
 int isWhitespace(char *str);
+
+/*****envrionment_built-in*******/
+void display_env(char *input);
+
 
 #endif /*MAIN_H*/

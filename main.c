@@ -19,25 +19,27 @@ int main(int ac __attribute__((unused)), char **av, char **env)
 			write(1, "$ ", 3);
 		if (getline(&input, &len, stdin) == -1)
 			break;
-		if (input[0] == '\n' || isWhitespace(input))
-			continue;
 		input[_strcspn(input, "\n")] = '\0';
 
 		myExit(input);
+		display_env(input);
 
 		tokenize_input(&args, input, &arg_count);
-		if (arg_count > 0)
+		if (_strcmp(input, "env") != 0)
 		{
-			path = _getenv(env, "PATH");
-			find_path(&args[0], path);
-			if (file_access(args[0]) == 0)
+			if (arg_count > 0)
 			{
-				execute_func(args, env);
-			}
-			else
-			{
-				free_array(args);
-				perror(av[0]);
+				path = _getenv(env, "PATH");
+				find_path(&args[0], path);
+				if (file_access(args[0]) == 0)
+				{
+					execute_func(args, env);
+				}
+				else
+				{
+					free_array(args);
+					perror(av[0]);
+				}
 			}
 		}
 	}
