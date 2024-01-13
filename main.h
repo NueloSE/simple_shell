@@ -40,14 +40,17 @@ size_t _strcspn(const char *str, const char *target);
 int _strcmp(const char *str1, const char *str2);
 
 /*****exit******/
-void myExit(char *input);
+void myExit(char *input, int n);
 
 /*****executions.c*****/
-void execute_func(char **args, char **env);
+int execute_func(char **args, char **env);
 int isWhitespace(char *str);
 
 /*****envrionment_built-in*******/
 void display_env(char *input);
+
+/********printerr.c***********/
+int printerr(char *, int, char *);
 
 
 #endif /*MAIN_H*/

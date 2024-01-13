@@ -7,7 +7,7 @@
  * Return: always void
 */
 
-void execute_func(char **args, char **env)
+int execute_func(char **args, char **env)
 {
 	pid_t pid;
 
@@ -28,6 +28,7 @@ void execute_func(char **args, char **env)
 		wait(NULL);
 		free_array(args);
 	}
+	return (0);
 }
 
 /**
