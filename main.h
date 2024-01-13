@@ -11,6 +11,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <sys/stat.h>
+#include <errno.h>
+#include <stdarg.h>
+
 
 extern char **environ;
 
@@ -51,6 +54,11 @@ void display_env(char *input);
 
 /********printerr.c***********/
 int printerr(char *, int, char *);
+
+/*****printers.c******/
+void _fprintf(const char *format, ...);
+int int_to_str(int value, char *buffer);
+void _printf(const char *format, ...);
 
 
 #endif /*MAIN_H*/

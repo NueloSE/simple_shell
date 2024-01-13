@@ -25,7 +25,7 @@ void display_env(char *input)
 
 		for (w = 0; environment[w] != NULL; w++)
 		{
-			printf("%s\n", environment[w]);
+			_printf("%s\n", environment[w]);
 		}
 	}
 }
